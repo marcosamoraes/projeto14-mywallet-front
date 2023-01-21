@@ -11,9 +11,9 @@ export default function App () {
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
-        {/* <Route path="/cadastro" element={<Register />} /> */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastro" element={<Register />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/nova-entrada" element={<ValuesEntry />} />
         <Route path="/nova-saida" element={<ValuesOutput />} />
       </Routes>
