@@ -31,6 +31,10 @@ export const Card = styled.div`
     justify-content: space-between;
     font-size: 16px;
 
+    &:last-child p {
+      margin-bottom: 10px;
+    }
+
     > p {
       color: black;
       margin: 0;
