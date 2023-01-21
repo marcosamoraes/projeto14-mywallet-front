@@ -1,5 +1,9 @@
-import { SquareButton as SquareButtonStyled } from "./SquareButton.styled.js";
+import { LinkStyled, SquareButton as SquareButtonStyled } from "./SquareButton.styled.js";
 
 export default function SquareButton(props) {
-	return <SquareButtonStyled {...props} />;
+	return (
+    <LinkStyled to={props.link}>
+      <SquareButtonStyled {...props} />
+    </LinkStyled>
+  );
 }
