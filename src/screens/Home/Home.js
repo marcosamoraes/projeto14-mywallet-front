@@ -24,8 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     axios.get('/movements')
-      .then(({data}) => setMovements(data))
-      .catch(error => console.log(error));
+      .then(({data}) => setMovements(data));
   }, []);
 
   total = movements.reduce((acc, movement) => {
@@ -53,7 +52,7 @@ export default function Home() {
 						<div>
 							{movements.map((movement, i) => {
 								return (
-									<div class="row" key={`${movement.type}-${i}`}>
+									<div className="row" key={`${movement.type}-${i}`}>
 										<p>
 											<span className="date">
 												{dayjs(movement.date).format("DD/MM")}
@@ -68,7 +67,7 @@ export default function Home() {
 							})}
 						</div>
 						<div>
-							<div class="row">
+							<div className="row">
 								<p>
                   <b>SALDO</b>
 								</p>
