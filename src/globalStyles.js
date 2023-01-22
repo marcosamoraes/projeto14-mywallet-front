@@ -44,6 +44,11 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 8px;
     padding: 10px;
   }
+
+  .list-movements {
+    max-height: 85%;
+    overflow: auto;
+  }
 `
 
 export default GlobalStyle;

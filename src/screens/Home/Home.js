@@ -49,7 +49,7 @@ export default function Home() {
 			<Card className={movements.length <= 0 ? "empty" : false}>
 				{movements.length > 0 ? (
 					<>
-						<div>
+						<div className="list-movements">
 							{movements.map((movement, i) => {
 								return (
 									<div className="row" key={`${movement.type}-${i}`}>
