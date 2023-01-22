@@ -6,56 +6,62 @@ import {
 	faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import Card from "../../components/Card/Card.js";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SquareButton from "../../components/SquareButton/SquareButton.js";
 import dayjs from "dayjs";
+import AuthContext from '../../contexts/auth.js';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-	const [entries, setEntries] = useState([
-		{
-			id: 1,
-			description: "Description 1",
-			value: 39.9,
-			type: "output",
-			date: "2023-01-10T00:00:00z",
-		},
-		{
-			id: 2,
-			description: "Description 2",
-			value: 500.0,
-			type: "entry",
-			date: "2023-01-08T00:00:00z",
-		},
-	]);
+	const [movements, setMovements] = useState([]);
 
-  const total = entries.reduce((acc, entry) => {
-    return entry.type === 'entry' ?
-      acc + entry.value :
-      acc - entry.value;
+  const { user, setToken, setUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  let total = 0;
+
+  useEffect(() => {
+    axios.get('/movements')
+      .then(({data}) => setMovements(data))
+      .catch(error => console.log(error));
+  }, []);
+
+  total = movements.reduce((acc, movement) => {
+    return movement.type === 'entry' ?
+      acc + movement.value :
+      acc - movement.value;
   }, 0);
+
+  const onLogout = () => {
+    setToken(null);
+    setUser(null);
+    navigate('/');
+  }
 
 	return (
 		<>
 			<Header>
-				<h1>Olá, Fulano</h1>
-				<FontAwesomeIcon icon={faSignOut} size="2x" onClick={null} />
+				<h1>Olá, {user.name.split(' ')[0]}</h1>
+				<FontAwesomeIcon icon={faSignOut} size="2x" onClick={onLogout} />
 			</Header>
 
-			<Card className={entries.length <= 0 ? "empty" : false}>
-				{entries.length > 0 ? (
+			<Card className={movements.length <= 0 ? "empty" : false}>
+				{movements.length > 0 ? (
 					<>
 						<div>
-							{entries.map((entry) => {
+							{movements.map((movement, i) => {
 								return (
-									<div class="row">
+									<div class="row" key={`${movement.type}-${i}`}>
 										<p>
 											<span className="date">
-												{dayjs(entry.date).format("DD/MM")}
+												{dayjs(movement.date).format("DD/MM")}
 											</span>
-											{entry.description}
+											{movement.description}
 										</p>
-										<p className={`text-${entry.type}`}>
-											{entry.value.toFixed(2).replace('.', ',')}
+										<p className={`text-${movement.type}`}>
+											{movement.value.toFixed(2).replace('.', ',')}
 										</p>
 									</div>
 								);
@@ -78,11 +84,11 @@ export default function Home() {
 			</Card>
 
 			<div className="d-flex gap-15">
-				<SquareButton link="nova-entrada">
+				<SquareButton link="/nova-entrada">
 					<FontAwesomeIcon icon={faPlusCircle} size="lg" />
 					<p>Nova entrada</p>
 				</SquareButton>
-				<SquareButton link="nova-saida">
+				<SquareButton link="/nova-saida">
 					<FontAwesomeIcon icon={faMinusCircle} size="lg" />
 					<p>Nova saída</p>
 				</SquareButton>

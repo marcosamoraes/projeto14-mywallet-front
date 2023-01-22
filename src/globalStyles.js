@@ -5,6 +5,15 @@ const GlobalStyle = createGlobalStyle`
     background-color: #8C11BE;
     font-family: 'Raleway', sans-serif;
     padding: 25px 25px 15px 25px;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  body:has(.center) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   form p {
@@ -25,6 +34,15 @@ const GlobalStyle = createGlobalStyle`
 
   .gap-15 {
     gap: 15px;
+  }
+
+  p.error {
+    background: #dc3545;
+    color: white;
+    font-weight: 700;
+    margin-top: -15px;
+    border-radius: 8px;
+    padding: 10px;
   }
 `
 
