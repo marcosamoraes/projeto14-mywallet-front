@@ -32,9 +32,9 @@ export default function ValuesOutput() {
 			</Header>
 
 			<form onSubmit={onSubmit}>
-        <Input type="text" name="value" id="value" placeholder="Valor" onChange={e => setForm({...form, value: Number(e.target.value.replace(',', '.'))})} />
-        <Input type="text" name="description" id="description" placeholder="Descrição" onChange={e => setForm({...form, description: e.target.value})} />
-        <Button type="submit">Salvar entrada</Button>
+        <Input type="text" name="value" id="value" placeholder="Valor" onChange={e => setForm({...form, value: Number(e.target.value.replace(',', '.'))})} data-test="registry-amount-input" />
+        <Input type="text" name="description" id="description" placeholder="Descrição" onChange={e => setForm({...form, description: e.target.value})} data-test="registry-name-input" />
+        <Button type="submit" data-test="registry-save">Salvar entrada</Button>
         {error ? (<p className="error">{error}</p>) : false}
       </form>
 		</>

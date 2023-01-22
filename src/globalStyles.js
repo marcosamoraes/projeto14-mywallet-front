@@ -49,6 +49,12 @@ const GlobalStyle = createGlobalStyle`
     max-height: 85%;
     overflow: auto;
   }
+
+  .no-style {
+    background: none;
+    border: none;
+    color: white;
+  }
 `
 
 export default GlobalStyle;

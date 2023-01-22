@@ -39,9 +39,9 @@ export default function Login() {
     <div className="center">
       <Logo />
       <form onSubmit={onSubmit}>
-        <Input type="email" name="email" id="email" placeholder="E-mail" onChange={handleInputChange} />
-        <Input type="password" name="password" id="password" placeholder="Senha" onChange={handleInputChange} />
-        <Button type="submit">Entrar</Button>
+        <Input type="email" name="email" id="email" placeholder="E-mail" onChange={handleInputChange} data-test="email" />
+        <Input type="password" name="password" id="password" placeholder="Senha" onChange={handleInputChange} data-test="password" />
+        <Button type="submit" data-test="sign-in-submit">Entrar</Button>
         {error ? (<p className="error">{error}</p>) : false}
         <p>Primeira vez? <Link to="/cadastro">Cadastre-se!</Link></p>
       </form>

@@ -42,8 +42,10 @@ export default function Home() {
 	return (
 		<>
 			<Header>
-				<h1>Olá, {user.name.split(' ')[0]}</h1>
-				<FontAwesomeIcon icon={faSignOut} size="2x" onClick={onLogout} />
+				<h1 data-test="user-name">Olá, {user.name.split(' ')[0]}</h1>
+        <button className="no-style" type="button" data-test="logout">
+  				<FontAwesomeIcon icon={faSignOut} size="2x" onClick={onLogout} />
+        </button>
 			</Header>
 
 			<Card className={movements.length <= 0 ? "empty" : false}>
@@ -57,9 +59,9 @@ export default function Home() {
 											<span className="date">
 												{dayjs(movement.date).format("DD/MM")}
 											</span>
-											{movement.description}
+											<span data-test="registry-name">{movement.description}</span>
 										</p>
-										<p className={`text-${movement.type}`}>
+										<p className={`text-${movement.type}`} data-test="registry-amount">
 											{movement.value.toFixed(2).replace('.', ',')}
 										</p>
 									</div>
@@ -71,7 +73,7 @@ export default function Home() {
 								<p>
                   <b>SALDO</b>
 								</p>
-								<p className={`text-${total >= 0 ? 'entry' : 'output'}`}>
+								<p className={`text-${total >= 0 ? 'entry' : 'output'}`} data-test="total-amount">
                   {total >= 0 ? total.toFixed(2).replace('.', ',') : (total * -1).toFixed(2).replace('.', ',')}
 								</p>
 							</div>
@@ -83,11 +85,11 @@ export default function Home() {
 			</Card>
 
 			<div className="d-flex gap-15">
-				<SquareButton link="/nova-entrada">
+				<SquareButton link="/nova-entrada" data-test="new-income">
 					<FontAwesomeIcon icon={faPlusCircle} size="lg" />
 					<p>Nova entrada</p>
 				</SquareButton>
-				<SquareButton link="/nova-saida">
+				<SquareButton link="/nova-saida" data-test="new-expense">
 					<FontAwesomeIcon icon={faMinusCircle} size="lg" />
 					<p>Nova saída</p>
 				</SquareButton>

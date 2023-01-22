@@ -36,11 +36,11 @@ export default function Register() {
     <div className="center">
       <Logo />
       <form onSubmit={onSubmit}>
-        <Input type="text" name="name" id="name" placeholder="Nome" onChange={handleInputChange} />
-        <Input type="email" name="email" id="email" placeholder="E-mail" onChange={handleInputChange} />
-        <Input type="password" name="password" id="password" placeholder="Senha" onChange={handleInputChange} />
-        <Input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirme a senha" onChange={handleInputChange} />
-        <Button type="submit">Cadastrar</Button>
+        <Input type="text" name="name" id="name" placeholder="Nome" onChange={handleInputChange} data-test="name" />
+        <Input type="email" name="email" id="email" placeholder="E-mail" onChange={handleInputChange} data-test="email" />
+        <Input type="password" name="password" id="password" placeholder="Senha" onChange={handleInputChange} data-test="password" />
+        <Input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirme a senha" onChange={handleInputChange} data-test="conf-password" />
+        <Button type="submit" data-test="sign-up-submit">Cadastrar</Button>
         {error ? (<p className="error">{error}</p>) : false}
         <p>Já tem uma conta? <Link to="/">Entre agora!</Link></p>
       </form>
