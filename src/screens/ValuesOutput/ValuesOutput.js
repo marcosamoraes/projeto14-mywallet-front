@@ -28,7 +28,7 @@ export default function ValuesOutput() {
 	return (
 		<>
 			<Header>
-				<h1>Nova entrada</h1>
+				<h1>Nova saída</h1>
 			</Header>
 
 			<form onSubmit={onSubmit}>
