@@ -22,6 +22,7 @@ export default function Login() {
 
     try {
       const { data } = await axios.post('/authenticate', form);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
       setToken(data.token);
       setUser(data.user);
       navigate('/home');
