@@ -17,18 +17,16 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const { data } = await axios.post('/authenticate', form);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-      setToken(data.token);
-      setUser(data.user);
-      navigate('/home');
-    } catch (error) {
-      setError(error.response.data);
-    }
+    axios.post('/authenticate', form)
+      .then(({data}) => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        setToken(data.token);
+        setUser(data.user);
+        navigate('/home');
+      }).catch(error => setError(error.response.data));
   }
 
   const handleInputChange = useCallback(({ target: { name, value } }) => setForm({
